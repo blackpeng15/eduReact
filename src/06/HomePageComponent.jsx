@@ -1,18 +1,19 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import Button from '../04/Button';
-import ButtonWithContext from "./ButtonWithContext";
+import ButtonWithContext from './ButtonWithContext';
+import ButtonWithLoadingContext from './ButtonWithLoadingContext';
 
-function RowBComponent() {
-    return <Button>버튼</Button>;
+function RowBComponent(){
+    return <ButtonWithLoadingContext label='hello'>버튼</ButtonWithLoadingContext>;
 }
 
-function RowCComponent() {
+function RowCComponent(){
     return <ButtonWithContext>버튼</ButtonWithContext>;
 }
 
-function TableComponent() {
-    return (
+function TableComponent(){
+    return(
         <table>
             <RowBComponent />
             <RowCComponent />
@@ -20,36 +21,30 @@ function TableComponent() {
     );
 }
 
-class HomePageComponent extends PureComponent {
-    constructor(props) {
+class HomePageComponent extends PureComponent{
+    constructor(props){
         super(props);
-
-        this.state = { loading: false };
+        this.state = {loading: false};
         this.setLoading = this.setLoading.bind(this);
         this.toggleLoading = this.toggleLoading.bind(this);
     }
-
-    getChildContext() {
-        return {
+    getChildContext(){
+        return{
             loading: this.state.loading,
-            setLoading: this.setLoading,
-        };
+            setLoading: this.setLoading
+        }
     }
-
-    setLoading(loading) {
-        this.setState({ loading });
+    setLoading(loading){
+        this.setState({loading});
     }
-
-
-    toggleLoading() {
-        this.setState( ({ loading }) => ({ loading: !loading }) );
+    toggleLoading(){
+        this.setState(({loading}) => ({loading: !loading}));
     }
-
-    render() {
-        return (
+    render(){
+        return(
             <div>
                 <TableComponent />
-                <Button onPress={this.toggleLoading}>상태 변경</Button>
+                <Button onPress={this.toggleLoading}>상태변경</Button>
             </div>
         );
     }
@@ -57,7 +52,7 @@ class HomePageComponent extends PureComponent {
 
 HomePageComponent.childContextTypes = {
     loading: PropTypes.bool,
-    setLoading: PropTypes.func,
+    setLoading: PropTypes.func
 };
 
 export default HomePageComponent;

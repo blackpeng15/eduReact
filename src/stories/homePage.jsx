@@ -1,11 +1,17 @@
-import React, { } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import HomePageComponent from '../06/HomePageComponent';
+import HomePageWithProvider from '../06/HomePageWithProvider';
+import HomePageWithTwoProvider from '../06/HomePageWithTwoProvider';
 
-export const HomePage = ({ name, ...props }) => {
-    return (
-        <HomePageComponent />
-    );
+export const HomePage = ({ name }) => {
+    return(
+        <React.Fragment>
+            <HomePageComponent />
+            {/* <HomePageWithProvider /> */}
+            {/* <HomePageWithTwoProvider /> */}
+        </React.Fragment>
+    );  
 };
 
 HomePage.propTypes = {
@@ -13,5 +19,5 @@ HomePage.propTypes = {
 };
 
 HomePage.defaultProps = {
-    name: '무제'
-};
+    name: '무제 : '
+}
